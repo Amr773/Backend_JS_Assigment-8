@@ -1,20 +1,16 @@
-import { Sequelize } from "sequelize";
+import { MongoClient } from "mongodb";
 
-export const sequelize = new Sequelize("assigment7Part1", "root", "", {
-  host: "localhost",
-  port: 3306,
-  dialect: "mysql",
-});
+const url = "mongodb://localhost:27017";
+const client = new MongoClient(url);
+const dbName = "MongoAssignment8";
+export const db = client.db(dbName);
 
 export async function testDBconnection() {
   try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
+    await client.connect();
+    console.log("Connected successfully to server");
+    const db = client.db(dbName);
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
-}
-
-export async function syncDB() {
-  await sequelize.sync({ alter: false });
 }

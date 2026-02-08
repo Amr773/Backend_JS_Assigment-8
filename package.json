@@ -2,18 +2,25 @@
   "name": "assigment",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/main.js",
+  "main": "index.js",
   "scripts": {
     "dev": "node --watch ./src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amr773/Backend_JS_Assigment-7.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
+  "bugs": {
+    "url": "https://github.com/Amr773/Backend_JS_Assigment-7/issues"
+  },
+  "homepage": "https://github.com/Amr773/Backend_JS_Assigment-7#readme",
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "mysql2": "^3.16.2",
-    "sequelize": "^6.37.7"
+    "mongodb": "^7.1.0"
   }
 }

@@ -1,23 +1,23 @@
 import express from "express";
-import authRouter from "./Modules/Auth/auth.controller.js";
 import { testDBconnection } from "./DB/connection.js";
-import { syncDB } from "./DB/connection.js";
-import userRouter from "./Modules/User/user.controller.js";
-import postRouter from "./Modules/Post/post.controller.js";
-import commentRouter from "./Modules/Comment/comment.controller.js";
+import { BooksModel } from "./DB/Models/Books.model.js";
+import collectionRouter from "./Modules/Collections/collection.controller.js";
+import { AuthorModel } from "./DB/Models/Authors.model.js";
+import { LogsModel } from "./DB/Models/Logs.model.js";
+import bookRouter from "./Modules/Books/books.controller.js";
+import logsRouter from "./Modules/Logs/logs.controller.js";
 
 async function bootstrap() {
   const app = express();
   const port = 3000;
 
   await testDBconnection();
-  await syncDB();
 
   app.use(express.json());
-  app.use("/auth", authRouter);
-  app.use("/users", userRouter);
-  app.use("/posts", postRouter);
-  app.use("/comments", commentRouter);
+  app.use("/collection", collectionRouter);
+  app.use("/books", bookRouter);
+  app.use("/logs", logsRouter);
+  
   app.use((error, req, res, next) => {
     return res
       .status(error.cause?.statusCode ?? 500)
